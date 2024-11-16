@@ -122,7 +122,21 @@ $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC);
       
         
         <h2 class="section-title">Not Completed</h2>
-    
+          <div class="todo-list" id="todo-list">
+            <ul>
+                <?php foreach ($tasks as $task): ?>
+                    <li class="todo-item">
+                        <span class="text"><?php echo htmlspecialchars($task['task'] ?? ''); ?></span>
+                        <div>
+                            <a class="edit" href="edit_task.php?id=<?php echo $task['id']; ?>">Edit</a>
+                            <a class="delete" href="delet_task.php?id=<?php echo $task['id']; ?>" onclick="return confirm('Are you sure you want to delete this task?');">Delete</a>
+                        </div>
+                    </li>
+                    
+                <?php endforeach; ?>
+               
+            </ul>
+        </div>
     </div>
 </body>
 </html>
